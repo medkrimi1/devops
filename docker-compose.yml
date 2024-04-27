@@ -1,56 +1,19 @@
-version: '3.8'
-
 services:
-
-  db:
-    image: mysql:latest
-    container_name: mysqlD
-    environment:
-      MYSQL_ROOT_PASSWORD: root
+  sonarqube:
+    image: sonarqube:lts
     ports:
-      - "3306:3306"
-    restart: always
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    container_name: my-php-myadmin
-    ports:
-      - "8082:80"
-    restart: always
-    depends_on:
-      - db
-    environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: root
-
-  app:
-    image: openjdk:17
-    container_name: skistation_app
-    working_dir: /app
-    volumes:
-      - ./target/SkiStationProject-0.0.1-SNAPSHOT.jar:/app/SkiStationProject-0.0.1-SNAPSHOT.jar
-    ports:
-      - "9091:9091"
-    depends_on:
-      - db
-    command: java -jar SkiStationProject-0.0.1-SNAPSHOT.jar
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/SkiStationDB?createDatabaseIfNotExist=true
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-      SPRING_JPA_SHOW-SQL: "true"
-      SPRING_JPA_HIBERNATE_DDL-AUTO: update
-
-  jenkins:
-    image: jenkins/jenkins:lts
-    container_name: my-jenkins
-    ports:
-      - "8080:8080"
-    restart: always
-
-  nexus:
-    image: sonatype/nexus3
-    container_name: my-nexus
-    ports:
-      - "8081:8081"
-    restart: always
+      - "9000:9000"
+#  db:
+#    image: mysql:latest
+#    container_name: mysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#    ports:
+#      - "3306:3306"
+#    restart: always
+#  nexus:
+#    image: sonatype/nexus3
+#    container_name: my-nexus
+#    ports:
+#      - "8081:8081"
+#    restart: always
