@@ -48,9 +48,9 @@ services:
       - "8080:8080"
     restart: always
 
-  sonarqube:
-    image: sonarqube:latest
-    container_name: my-sonarqube
+  nexus:
+    image: sonatype/nexus3
+    container_name: my-nexus
     ports:
-      - "8089:8089"
+      - "8081:8081"
     restart: always
