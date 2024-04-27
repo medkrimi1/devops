@@ -3,17 +3,17 @@ services:
     image: sonarqube:lts
     ports:
       - "9000:9000"
-#  db:
-#    image: mysql:latest
-#    container_name: mysql
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#    ports:
-#      - "3306:3306"
-#    restart: always
-#  nexus:
-#    image: sonatype/nexus3
-#    container_name: my-nexus
-#    ports:
-#      - "8081:8081"
-#    restart: always
+  db:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    restart: always
+  nexus:
+    image: sonatype/nexus3
+    container_name: my-nexus
+    ports:
+      - "8081:8081"
+    restart: always
